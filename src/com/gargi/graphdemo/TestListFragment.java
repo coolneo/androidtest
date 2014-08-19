@@ -23,7 +23,7 @@ public class TestListFragment extends Fragment{
 		TextView title = (TextView)rootView.findViewById(R.id.fragmenttextview);
 		title.setText(data);
 		
-		return null;
+		return rootView;
 		
 	}
 

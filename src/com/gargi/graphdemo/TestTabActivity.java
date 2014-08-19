@@ -13,6 +13,7 @@ public class TestTabActivity extends FragmentActivity implements ActionBar.TabLi
 	TextView titleTextView;
 	ViewPager mTabPager;
 	TestListFragmentAdapter mTabAdapter;
+	ActionBar mActionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,20 +22,27 @@ public class TestTabActivity extends FragmentActivity implements ActionBar.TabLi
 		
 		titleTextView = (TextView)findViewById(R.id.titletextview);
 		mTabPager = (ViewPager)findViewById(R.id.tabpager);
+		mTabPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+            	mActionBar.setSelectedNavigationItem(position);
+            }
+
+		});
 		mTabAdapter = new TestListFragmentAdapter(getSupportFragmentManager());
 		mTabPager.setAdapter(mTabAdapter);
 		
 		
-		/*final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		mActionBar = getActionBar();
+		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	
 			
-		actionBar.addTab(actionBar.newTab().
+		mActionBar.addTab(mActionBar.newTab().
 								   setText("Practice Test").
 								   setTabListener(this));
-		actionBar.addTab(actionBar.newTab().
+		mActionBar.addTab(mActionBar.newTab().
 								   setText("Time Bound Tests").
-								   setTabListener(this));*/
+								   setTabListener(this));
 	}
 
 	@Override
